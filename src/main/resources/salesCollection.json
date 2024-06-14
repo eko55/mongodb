@@ -1,0 +1,1008 @@
+[
+  {
+    _id: ObjectId('5bd761ddae323e45a93cd7b5'),
+    saleDate: ISODate('2017-03-18T01:56:29.372Z'),
+    items: [
+      {
+        name: 'pens',
+        tags: [ 'writing', 'office', 'school', 'stationary' ],
+        price: Decimal128('17.24'),
+        quantity: 3
+      },
+      {
+        name: 'backpack',
+        tags: [ 'school', 'travel', 'kids' ],
+        price: Decimal128('41.52'),
+        quantity: 4
+      },
+      {
+        name: 'notepad',
+        tags: [ 'office', 'writing', 'school' ],
+        price: Decimal128('27.19'),
+        quantity: 2
+      },
+      {
+        name: 'envelopes',
+        tags: [ 'stationary', 'office', 'general' ],
+        price: Decimal128('21.1'),
+        quantity: 8
+      },
+      {
+        name: 'printer paper',
+        tags: [ 'office', 'stationary' ],
+        price: Decimal128('28.58'),
+        quantity: 1
+      },
+      {
+        name: 'laptop',
+        tags: [ 'electronics', 'school', 'office' ],
+        price: Decimal128('694.08'),
+        quantity: 2
+      },
+      {
+        name: 'notepad',
+        tags: [ 'office', 'writing', 'school' ],
+        price: Decimal128('29.11'),
+        quantity: 1
+      },
+      {
+        name: 'envelopes',
+        tags: [ 'stationary', 'office', 'general' ],
+        price: Decimal128('23.9'),
+        quantity: 4
+      },
+      {
+        name: 'pens',
+        tags: [ 'writing', 'office', 'school', 'stationary' ],
+        price: Decimal128('51.2'),
+        quantity: 3
+      }
+    ],
+    storeLocation: 'London',
+    customer: {
+      gender: 'M',
+      age: 42,
+      email: 'sifpubiw@fiore.ps',
+      satisfaction: 5
+    },
+    couponUsed: false,
+    purchaseMethod: 'Phone'
+  },
+  {
+    _id: ObjectId('5bd761ddae323e45a93cd7ba'),
+    saleDate: ISODate('2016-05-19T07:26:04.189Z'),
+    items: [
+      {
+        name: 'notepad',
+        tags: [ 'office', 'writing', 'school' ],
+        price: Decimal128('36.32'),
+        quantity: 3
+      },
+      {
+        name: 'binder',
+        tags: [ 'school', 'general', 'organization' ],
+        price: Decimal128('21.83'),
+        quantity: 1
+      },
+      {
+        name: 'binder',
+        tags: [ 'school', 'general', 'organization' ],
+        price: Decimal128('23.64'),
+        quantity: 6
+      },
+      {
+        name: 'envelopes',
+        tags: [ 'stationary', 'office', 'general' ],
+        price: Decimal128('16.48'),
+        quantity: 2
+      },
+      {
+        name: 'envelopes',
+        tags: [ 'stationary', 'office', 'general' ],
+        price: Decimal128('10.86'),
+        quantity: 3
+      },
+      {
+        name: 'backpack',
+        tags: [ 'school', 'travel', 'kids' ],
+        price: Decimal128('48.14'),
+        quantity: 1
+      }
+    ],
+    storeLocation: 'San Diego',
+    customer: {
+      gender: 'F',
+      age: 38,
+      email: 'lowsuje@anuuz.la',
+      satisfaction: 5
+    },
+    couponUsed: false,
+    purchaseMethod: 'Online'
+  },
+  {
+    _id: ObjectId('5bd761ddae323e45a93cd7bb'),
+    saleDate: ISODate('2014-11-17T16:56:29.337Z'),
+    items: [
+      {
+        name: 'notepad',
+        tags: [ 'office', 'writing', 'school' ],
+        price: Decimal128('39.36'),
+        quantity: 1
+      },
+      {
+        name: 'printer paper',
+        tags: [ 'office', 'stationary' ],
+        price: Decimal128('33.5'),
+        quantity: 8
+      },
+      {
+        name: 'laptop',
+        tags: [ 'electronics', 'school', 'office' ],
+        price: Decimal128('1143.18'),
+        quantity: 5
+      },
+      {
+        name: 'backpack',
+        tags: [ 'school', 'travel', 'kids' ],
+        price: Decimal128('110.78'),
+        quantity: 3
+      },
+      {
+        name: 'binder',
+        tags: [ 'school', 'general', 'organization' ],
+        price: Decimal128('27.4'),
+        quantity: 4
+      },
+      {
+        name: 'envelopes',
+        tags: [ 'stationary', 'office', 'general' ],
+        price: Decimal128('22.99'),
+        quantity: 9
+      },
+      {
+        name: 'notepad',
+        tags: [ 'office', 'writing', 'school' ],
+        price: Decimal128('18.83'),
+        quantity: 4
+      }
+    ],
+    storeLocation: 'San Diego',
+    customer: {
+      gender: 'F',
+      age: 25,
+      email: 'ezhinja@pupuwu.sv',
+      satisfaction: 2
+    },
+    couponUsed: false,
+    purchaseMethod: 'Online'
+  },
+  {
+    _id: ObjectId('5bd761ddae323e45a93cd7bc'),
+    saleDate: ISODate('2015-01-15T08:27:26.321Z'),
+    items: [
+      {
+        name: 'notepad',
+        tags: [ 'office', 'writing', 'school' ],
+        price: Decimal128('12.96'),
+        quantity: 1
+      },
+      {
+        name: 'pens',
+        tags: [ 'writing', 'office', 'school', 'stationary' ],
+        price: Decimal128('5.36'),
+        quantity: 4
+      },
+      {
+        name: 'printer paper',
+        tags: [ 'office', 'stationary' ],
+        price: Decimal128('26.6'),
+        quantity: 10
+      },
+      {
+        name: 'notepad',
+        tags: [ 'office', 'writing', 'school' ],
+        price: Decimal128('35.71'),
+        quantity: 1
+      },
+      {
+        name: 'laptop',
+        tags: [ 'electronics', 'school', 'office' ],
+        price: Decimal128('1292.93'),
+        quantity: 3
+      },
+      {
+        name: 'pens',
+        tags: [ 'writing', 'office', 'school', 'stationary' ],
+        price: Decimal128('5.74'),
+        quantity: 1
+      },
+      {
+        name: 'binder',
+        tags: [ 'school', 'general', 'organization' ],
+        price: Decimal128('10.1'),
+        quantity: 10
+      },
+      {
+        name: 'envelopes',
+        tags: [ 'stationary', 'office', 'general' ],
+        price: Decimal128('24.83'),
+        quantity: 7
+      }
+    ],
+    storeLocation: 'Seattle',
+    customer: { gender: 'M', age: 62, email: 'zijga@isol.pt', satisfaction: 3 },
+    couponUsed: false,
+    purchaseMethod: 'In store'
+  },
+  {
+    _id: ObjectId('5bd761ddae323e45a93cd7bd'),
+    saleDate: ISODate('2017-02-04T01:33:38.834Z'),
+    items: [
+      {
+        name: 'envelopes',
+        tags: [ 'stationary', 'office', 'general' ],
+        price: Decimal128('13.65'),
+        quantity: 7
+      },
+      {
+        name: 'printer paper',
+        tags: [ 'office', 'stationary' ],
+        price: Decimal128('28.32'),
+        quantity: 7
+      },
+      {
+        name: 'pens',
+        tags: [ 'writing', 'office', 'school', 'stationary' ],
+        price: Decimal128('23.81'),
+        quantity: 5
+      }
+    ],
+    storeLocation: 'Austin',
+    customer: { gender: 'F', age: 39, email: 'mi@pubez.ao', satisfaction: 5 },
+    couponUsed: false,
+    purchaseMethod: 'Online'
+  },
+  {
+    _id: ObjectId('5bd761ddae323e45a93cd7be'),
+    saleDate: ISODate('2015-01-18T09:15:10.759Z'),
+    items: [
+      {
+        name: 'pens',
+        tags: [ 'writing', 'office', 'school', 'stationary' ],
+        price: Decimal128('14.2'),
+        quantity: 2
+      },
+      {
+        name: 'envelopes',
+        tags: [ 'stationary', 'office', 'general' ],
+        price: Decimal128('9.89'),
+        quantity: 1
+      },
+      {
+        name: 'binder',
+        tags: [ 'school', 'general', 'organization' ],
+        price: Decimal128('29.81'),
+        quantity: 8
+      },
+      {
+        name: 'printer paper',
+        tags: [ 'office', 'stationary' ],
+        price: Decimal128('32.71'),
+        quantity: 4
+      },
+      {
+        name: 'notepad',
+        tags: [ 'office', 'writing', 'school' ],
+        price: Decimal128('25.59'),
+        quantity: 1
+      },
+      {
+        name: 'envelopes',
+        tags: [ 'stationary', 'office', 'general' ],
+        price: Decimal128('12.45'),
+        quantity: 8
+      },
+      {
+        name: 'laptop',
+        tags: [ 'electronics', 'school', 'office' ],
+        price: Decimal128('1421.77'),
+        quantity: 3
+      },
+      {
+        name: 'pens',
+        tags: [ 'writing', 'office', 'school', 'stationary' ],
+        price: Decimal128('57.53'),
+        quantity: 3
+      },
+      {
+        name: 'notepad',
+        tags: [ 'office', 'writing', 'school' ],
+        price: Decimal128('26.8'),
+        quantity: 5
+      }
+    ],
+    storeLocation: 'Austin',
+    customer: { gender: 'M', age: 60, email: 'paj@mouvzi.fi', satisfaction: 4 },
+    couponUsed: false,
+    purchaseMethod: 'In store'
+  },
+  {
+    _id: ObjectId('5bd761ddae323e45a93cd7bf'),
+    saleDate: ISODate('2013-04-11T18:15:39.368Z'),
+    items: [
+      {
+        name: 'notepad',
+        tags: [ 'office', 'writing', 'school' ],
+        price: Decimal128('8.17'),
+        quantity: 1
+      },
+      {
+        name: 'laptop',
+        tags: [ 'electronics', 'school', 'office' ],
+        price: Decimal128('465.19'),
+        quantity: 4
+      },
+      {
+        name: 'binder',
+        tags: [ 'school', 'general', 'organization' ],
+        price: Decimal128('20.72'),
+        quantity: 1
+      },
+      {
+        name: 'pens',
+        tags: [ 'writing', 'office', 'school', 'stationary' ],
+        price: Decimal128('38.06'),
+        quantity: 4
+      }
+    ],
+    storeLocation: 'Seattle',
+    customer: {
+      gender: 'F',
+      age: 50,
+      email: 'majwafune@penapri.ee',
+      satisfaction: 5
+    },
+    couponUsed: true,
+    purchaseMethod: 'Online'
+  },
+  {
+    _id: ObjectId('5bd761ddae323e45a93cd7c0'),
+    saleDate: ISODate('2014-09-16T12:26:18.253Z'),
+    items: [
+      {
+        name: 'backpack',
+        tags: [ 'school', 'travel', 'kids' ],
+        price: Decimal128('184.48'),
+        quantity: 1
+      },
+      {
+        name: 'laptop',
+        tags: [ 'electronics', 'school', 'office' ],
+        price: Decimal128('1189.59'),
+        quantity: 4
+      },
+      {
+        name: 'printer paper',
+        tags: [ 'office', 'stationary' ],
+        price: Decimal128('30.45'),
+        quantity: 1
+      }
+    ],
+    storeLocation: 'London',
+    customer: { gender: 'F', age: 26, email: 'id@ewrofa.bz', satisfaction: 5 },
+    couponUsed: false,
+    purchaseMethod: 'In store'
+  },
+  {
+    _id: ObjectId('5bd761ddae323e45a93cd7c1'),
+    saleDate: ISODate('2014-03-05T13:51:24.584Z'),
+    items: [
+      {
+        name: 'binder',
+        tags: [ 'school', 'general', 'organization' ],
+        price: Decimal128('24.4'),
+        quantity: 8
+      },
+      {
+        name: 'notepad',
+        tags: [ 'office', 'writing', 'school' ],
+        price: Decimal128('33.41'),
+        quantity: 4
+      },
+      {
+        name: 'notepad',
+        tags: [ 'office', 'writing', 'school' ],
+        price: Decimal128('23.71'),
+        quantity: 4
+      },
+      {
+        name: 'laptop',
+        tags: [ 'electronics', 'school', 'office' ],
+        price: Decimal128('1591.8'),
+        quantity: 3
+      },
+      {
+        name: 'pens',
+        tags: [ 'writing', 'office', 'school', 'stationary' ],
+        price: Decimal128('15.72'),
+        quantity: 2
+      },
+      {
+        name: 'binder',
+        tags: [ 'school', 'general', 'organization' ],
+        price: Decimal128('24.89'),
+        quantity: 1
+      },
+      {
+        name: 'printer paper',
+        tags: [ 'office', 'stationary' ],
+        price: Decimal128('20.3'),
+        quantity: 4
+      },
+      {
+        name: 'envelopes',
+        tags: [ 'stationary', 'office', 'general' ],
+        price: Decimal128('5.71'),
+        quantity: 7
+      }
+    ],
+    storeLocation: 'Denver',
+    customer: { gender: 'F', age: 44, email: 'zu@ikpohcu.mv', satisfaction: 4 },
+    couponUsed: false,
+    purchaseMethod: 'In store'
+  },
+  {
+    _id: ObjectId('5bd761ddae323e45a93cd7c2'),
+    saleDate: ISODate('2014-06-23T06:29:28.069Z'),
+    items: [
+      {
+        name: 'envelopes',
+        tags: [ 'stationary', 'office', 'general' ],
+        price: Decimal128('22.5'),
+        quantity: 9
+      },
+      {
+        name: 'envelopes',
+        tags: [ 'stationary', 'office', 'general' ],
+        price: Decimal128('6.79'),
+        quantity: 7
+      },
+      {
+        name: 'notepad',
+        tags: [ 'office', 'writing', 'school' ],
+        price: Decimal128('15.94'),
+        quantity: 5
+      }
+    ],
+    storeLocation: 'Denver',
+    customer: {
+      gender: 'F',
+      age: 42,
+      email: 'uvleh@rowwica.np',
+      satisfaction: 4
+    },
+    couponUsed: false,
+    purchaseMethod: 'Phone'
+  },
+  {
+    _id: ObjectId('5bd761ddae323e45a93cd7c3'),
+    saleDate: ISODate('2016-02-11T07:14:36.321Z'),
+    items: [
+      {
+        name: 'pens',
+        tags: [ 'writing', 'office', 'school', 'stationary' ],
+        price: Decimal128('58.64'),
+        quantity: 3
+      },
+      {
+        name: 'notepad',
+        tags: [ 'office', 'writing', 'school' ],
+        price: Decimal128('37.69'),
+        quantity: 3
+      },
+      {
+        name: 'backpack',
+        tags: [ 'school', 'travel', 'kids' ],
+        price: Decimal128('96.34'),
+        quantity: 2
+      },
+      {
+        name: 'binder',
+        tags: [ 'school', 'general', 'organization' ],
+        price: Decimal128('14.39'),
+        quantity: 5
+      },
+      {
+        name: 'notepad',
+        tags: [ 'office', 'writing', 'school' ],
+        price: Decimal128('7.77'),
+        quantity: 5
+      }
+    ],
+    storeLocation: 'Austin',
+    customer: {
+      gender: 'M',
+      age: 27,
+      email: 'ipesukim@jakorno.edu',
+      satisfaction: 5
+    },
+    couponUsed: false,
+    purchaseMethod: 'In store'
+  },
+  {
+    _id: ObjectId('5bd761ddae323e45a93cd7c4'),
+    saleDate: ISODate('2016-03-20T02:21:30.526Z'),
+    items: [
+      {
+        name: 'pens',
+        tags: [ 'writing', 'office', 'school', 'stationary' ],
+        price: Decimal128('65.86'),
+        quantity: 2
+      },
+      {
+        name: 'envelopes',
+        tags: [ 'stationary', 'office', 'general' ],
+        price: Decimal128('24.6'),
+        quantity: 8
+      },
+      {
+        name: 'binder',
+        tags: [ 'school', 'general', 'organization' ],
+        price: Decimal128('19.78'),
+        quantity: 10
+      },
+      {
+        name: 'backpack',
+        tags: [ 'school', 'travel', 'kids' ],
+        price: Decimal128('88.68'),
+        quantity: 3
+      },
+      {
+        name: 'laptop',
+        tags: [ 'electronics', 'school', 'office' ],
+        price: Decimal128('605.92'),
+        quantity: 3
+      },
+      {
+        name: 'notepad',
+        tags: [ 'office', 'writing', 'school' ],
+        price: Decimal128('9.82'),
+        quantity: 5
+      },
+      {
+        name: 'pens',
+        tags: [ 'writing', 'office', 'school', 'stationary' ],
+        price: Decimal128('44.59'),
+        quantity: 1
+      },
+      {
+        name: 'notepad',
+        tags: [ 'office', 'writing', 'school' ],
+        price: Decimal128('29.01'),
+        quantity: 4
+      },
+      {
+        name: 'notepad',
+        tags: [ 'office', 'writing', 'school' ],
+        price: Decimal128('23.81'),
+        quantity: 5
+      },
+      {
+        name: 'envelopes',
+        tags: [ 'stationary', 'office', 'general' ],
+        price: Decimal128('7.89'),
+        quantity: 1
+      }
+    ],
+    storeLocation: 'Austin',
+    customer: {
+      gender: 'M',
+      age: 48,
+      email: 'metbepfav@pohjo.ee',
+      satisfaction: 1
+    },
+    couponUsed: false,
+    purchaseMethod: 'Online'
+  },
+  {
+    _id: ObjectId('5bd761ddae323e45a93cd7c5'),
+    saleDate: ISODate('2014-09-29T22:37:46.373Z'),
+    items: [
+      {
+        name: 'printer paper',
+        tags: [ 'office', 'stationary' ],
+        price: Decimal128('13.7'),
+        quantity: 8
+      },
+      {
+        name: 'notepad',
+        tags: [ 'office', 'writing', 'school' ],
+        price: Decimal128('10.42'),
+        quantity: 3
+      },
+      {
+        name: 'pens',
+        tags: [ 'writing', 'office', 'school', 'stationary' ],
+        price: Decimal128('74.73'),
+        quantity: 5
+      },
+      {
+        name: 'pens',
+        tags: [ 'writing', 'office', 'school', 'stationary' ],
+        price: Decimal128('45.73'),
+        quantity: 5
+      },
+      {
+        name: 'laptop',
+        tags: [ 'electronics', 'school', 'office' ],
+        price: Decimal128('826.56'),
+        quantity: 1
+      },
+      {
+        name: 'binder',
+        tags: [ 'school', 'general', 'organization' ],
+        price: Decimal128('25.83'),
+        quantity: 2
+      },
+      {
+        name: 'envelopes',
+        tags: [ 'stationary', 'office', 'general' ],
+        price: Decimal128('8.56'),
+        quantity: 3
+      },
+      {
+        name: 'notepad',
+        tags: [ 'office', 'writing', 'school' ],
+        price: Decimal128('19.53'),
+        quantity: 4
+      },
+      {
+        name: 'notepad',
+        tags: [ 'office', 'writing', 'school' ],
+        price: Decimal128('15.31'),
+        quantity: 1
+      }
+    ],
+    storeLocation: 'London',
+    customer: { gender: 'F', age: 43, email: 'pam@ut.td', satisfaction: 5 },
+    couponUsed: false,
+    purchaseMethod: 'Phone'
+  },
+  {
+    _id: ObjectId('5bd761ddae323e45a93cd7b9'),
+    saleDate: ISODate('2017-10-14T14:19:43.597Z'),
+    items: [
+      {
+        name: 'binder',
+        tags: [ 'school', 'general', 'organization' ],
+        price: Decimal128('20.3'),
+        quantity: 3
+      },
+      {
+        name: 'laptop',
+        tags: [ 'electronics', 'school', 'office' ],
+        price: Decimal128('1525.7'),
+        quantity: 4
+      },
+      {
+        name: 'pens',
+        tags: [ 'writing', 'office', 'school', 'stationary' ],
+        price: Decimal128('70.04'),
+        quantity: 1
+      },
+      {
+        name: 'envelopes',
+        tags: [ 'stationary', 'office', 'general' ],
+        price: Decimal128('14.12'),
+        quantity: 2
+      },
+      {
+        name: 'envelopes',
+        tags: [ 'stationary', 'office', 'general' ],
+        price: Decimal128('12.51'),
+        quantity: 8
+      }
+    ],
+    storeLocation: 'Denver',
+    customer: {
+      gender: 'F',
+      age: 33,
+      email: 'hiwnippi@ezvegi.su',
+      satisfaction: 2
+    },
+    couponUsed: false,
+    purchaseMethod: 'Online'
+  },
+  {
+    _id: ObjectId('5bd761ddae323e45a93cd7c6'),
+    saleDate: ISODate('2013-02-13T19:24:41.939Z'),
+    items: [
+      {
+        name: 'binder',
+        tags: [ 'school', 'general', 'organization' ],
+        price: Decimal128('24.62'),
+        quantity: 4
+      },
+      {
+        name: 'notepad',
+        tags: [ 'office', 'writing', 'school' ],
+        price: Decimal128('14.6'),
+        quantity: 3
+      }
+    ],
+    storeLocation: 'Denver',
+    customer: {
+      gender: 'M',
+      age: 50,
+      email: 'secosej@acitomgi.tm',
+      satisfaction: 2
+    },
+    couponUsed: false,
+    purchaseMethod: 'Online'
+  },
+  {
+    _id: ObjectId('5bd761ddae323e45a93cd7c8'),
+    saleDate: ISODate('2015-01-26T03:20:39.086Z'),
+    items: [
+      {
+        name: 'printer paper',
+        tags: [ 'office', 'stationary' ],
+        price: Decimal128('22.83'),
+        quantity: 6
+      },
+      {
+        name: 'notepad',
+        tags: [ 'office', 'writing', 'school' ],
+        price: Decimal128('24.52'),
+        quantity: 1
+      },
+      {
+        name: 'laptop',
+        tags: [ 'electronics', 'school', 'office' ],
+        price: Decimal128('1592.09'),
+        quantity: 2
+      },
+      {
+        name: 'pens',
+        tags: [ 'writing', 'office', 'school', 'stationary' ],
+        price: Decimal128('73.9'),
+        quantity: 1
+      },
+      {
+        name: 'binder',
+        tags: [ 'school', 'general', 'organization' ],
+        price: Decimal128('16.62'),
+        quantity: 4
+      },
+      {
+        name: 'notepad',
+        tags: [ 'office', 'writing', 'school' ],
+        price: Decimal128('37.24'),
+        quantity: 3
+      },
+      {
+        name: 'backpack',
+        tags: [ 'school', 'travel', 'kids' ],
+        price: Decimal128('134.75'),
+        quantity: 1
+      },
+      {
+        name: 'envelopes',
+        tags: [ 'stationary', 'office', 'general' ],
+        price: Decimal128('19.68'),
+        quantity: 10
+      },
+      {
+        name: 'envelopes',
+        tags: [ 'stationary', 'office', 'general' ],
+        price: Decimal128('11.82'),
+        quantity: 2
+      }
+    ],
+    storeLocation: 'Denver',
+    customer: {
+      gender: 'F',
+      age: 59,
+      email: 'mahtuctan@luridnuj.az',
+      satisfaction: 2
+    },
+    couponUsed: false,
+    purchaseMethod: 'In store'
+  },
+  {
+    _id: ObjectId('5bd761ddae323e45a93cd7c9'),
+    saleDate: ISODate('2016-03-30T08:47:28.567Z'),
+    items: [
+      {
+        name: 'printer paper',
+        tags: [ 'office', 'stationary' ],
+        price: Decimal128('46.25'),
+        quantity: 5
+      },
+      {
+        name: 'binder',
+        tags: [ 'school', 'general', 'organization' ],
+        price: Decimal128('18.92'),
+        quantity: 3
+      },
+      {
+        name: 'envelopes',
+        tags: [ 'stationary', 'office', 'general' ],
+        price: Decimal128('14.68'),
+        quantity: 5
+      },
+      {
+        name: 'notepad',
+        tags: [ 'office', 'writing', 'school' ],
+        price: Decimal128('37.15'),
+        quantity: 3
+      },
+      {
+        name: 'backpack',
+        tags: [ 'school', 'travel', 'kids' ],
+        price: Decimal128('80.03'),
+        quantity: 2
+      },
+      {
+        name: 'binder',
+        tags: [ 'school', 'general', 'organization' ],
+        price: Decimal128('18.4'),
+        quantity: 4
+      },
+      {
+        name: 'pens',
+        tags: [ 'writing', 'office', 'school', 'stationary' ],
+        price: Decimal128('60.08'),
+        quantity: 1
+      },
+      {
+        name: 'laptop',
+        tags: [ 'electronics', 'school', 'office' ],
+        price: Decimal128('412.85'),
+        quantity: 1
+      }
+    ],
+    storeLocation: 'Denver',
+    customer: { gender: 'F', age: 58, email: 'emdoc@robij.cm', satisfaction: 2 },
+    couponUsed: false,
+    purchaseMethod: 'In store'
+  },
+  {
+    _id: ObjectId('5bd761ddae323e45a93cd7c7'),
+    saleDate: ISODate('2013-10-10T20:31:16.876Z'),
+    items: [
+      {
+        name: 'envelopes',
+        tags: [ 'stationary', 'office', 'general' ],
+        price: Decimal128('17.4'),
+        quantity: 8
+      },
+      {
+        name: 'notepad',
+        tags: [ 'office', 'writing', 'school' ],
+        price: Decimal128('15.42'),
+        quantity: 2
+      },
+      {
+        name: 'binder',
+        tags: [ 'school', 'general', 'organization' ],
+        price: Decimal128('14.38'),
+        quantity: 3
+      },
+      {
+        name: 'printer paper',
+        tags: [ 'office', 'stationary' ],
+        price: Decimal128('37.23'),
+        quantity: 7
+      },
+      {
+        name: 'pens',
+        tags: [ 'writing', 'office', 'school', 'stationary' ],
+        price: Decimal128('42.29'),
+        quantity: 4
+      },
+      {
+        name: 'notepad',
+        tags: [ 'office', 'writing', 'school' ],
+        price: Decimal128('29.16'),
+        quantity: 2
+      },
+      {
+        name: 'backpack',
+        tags: [ 'school', 'travel', 'kids' ],
+        price: Decimal128('103.13'),
+        quantity: 3
+      },
+      {
+        name: 'envelopes',
+        tags: [ 'stationary', 'office', 'general' ],
+        price: Decimal128('8.92'),
+        quantity: 5
+      },
+      {
+        name: 'pens',
+        tags: [ 'writing', 'office', 'school', 'stationary' ],
+        price: Decimal128('40.42'),
+        quantity: 1
+      }
+    ],
+    storeLocation: 'London',
+    customer: { gender: 'F', age: 39, email: 'riwfige@fi.so', satisfaction: 5 },
+    couponUsed: false,
+    purchaseMethod: 'In store'
+  },
+  {
+    _id: ObjectId('5bd761ddae323e45a93cd7ca'),
+    saleDate: ISODate('2014-10-18T09:52:44.222Z'),
+    items: [
+      {
+        name: 'envelopes',
+        tags: [ 'stationary', 'office', 'general' ],
+        price: Decimal128('11.7'),
+        quantity: 9
+      },
+      {
+        name: 'envelopes',
+        tags: [ 'stationary', 'office', 'general' ],
+        price: Decimal128('7.26'),
+        quantity: 1
+      }
+    ],
+    storeLocation: 'New York',
+    customer: { gender: 'M', age: 60, email: 'gizlu@dot.io', satisfaction: 4 },
+    couponUsed: false,
+    purchaseMethod: 'Online'
+  },
+  {
+    _id: ObjectId('5bd761ddae323e45a93cd7cb'),
+    saleDate: ISODate('2014-03-30T19:31:18.530Z'),
+    items: [
+      {
+        name: 'backpack',
+        tags: [ 'school', 'travel', 'kids' ],
+        price: Decimal128('48.04'),
+        quantity: 1
+      },
+      {
+        name: 'notepad',
+        tags: [ 'office', 'writing', 'school' ],
+        price: Decimal128('15.33'),
+        quantity: 3
+      },
+      {
+        name: 'pens',
+        tags: [ 'writing', 'office', 'school', 'stationary' ],
+        price: Decimal128('51.12'),
+        quantity: 1
+      },
+      {
+        name: 'pens',
+        tags: [ 'writing', 'office', 'school', 'stationary' ],
+        price: Decimal128('51.9'),
+        quantity: 3
+      },
+      {
+        name: 'binder',
+        tags: [ 'school', 'general', 'organization' ],
+        price: Decimal128('25.75'),
+        quantity: 5
+      },
+      {
+        name: 'printer paper',
+        tags: [ 'office', 'stationary' ],
+        price: Decimal128('33.04'),
+        quantity: 7
+      },
+      {
+        name: 'notepad',
+        tags: [ 'office', 'writing', 'school' ],
+        price: Decimal128('18.39'),
+        quantity: 5
+      }
+    ],
+    storeLocation: 'Seattle',
+    customer: { gender: 'F', age: 70, email: 'kof@otuloti.mx', satisfaction: 5 },
+    couponUsed: false,
+    purchaseMethod: 'In store'
+  }
+]
