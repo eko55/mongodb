@@ -127,7 +127,7 @@ Get and set replica set RW concerns:
 2.Open firewall between those 3 servers so they can communicate with each other
 3.Install mongodb on the servers
 4.Each server has DNS record like mongod0.replset.com,mongod1.replset.com,mongod2.replset.com 
-associated the respective non-local IP address
+associated with the respective non-local IP address
 5.Before we deploy replica set we need to secure our servers by creating a shared password file
 known as a key file on the server, that each server will use to authenticate with one another.In production we 
 would prefer something like an x509 certificate instead of just a key file.

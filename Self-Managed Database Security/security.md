@@ -71,17 +71,42 @@ Example built-in roles:
 Encoding data to ensure only permitted users can read it.
 
 Encryption categories:
-- transport encryption(network encryption) - данните предавани по мрежата са encrypt-нати, което ги предпазва от interception and tampering during transit.TLS е криптографски протокол, пример за transport encryption.
-Mongo поддържа TLS за енкриптване на комуникацията между клиентите и монго инстанциите(data in motion)
-За да използва TLS, монго трябва да има TLS сертификат(issued by certificate authority или self-signed cert),верифициращ identity-то на сървъра.
+- <span style="color:orange">transport encryption(network encryption)</span> - данните предавани по мрежата са 
+криптирани, което ги предпазва при потенциален interception(освен ако attacker-a няма съответните decryption 
+ключове).<span style="color:orange">TLS(transport layer security)</span> е криптографски протокол осъществяващ transport encryption.
+Mongo поддържа TLS за криптиране на комуникацията между клиентите и монго инстанциите(data in motion)
+За да използва TLS, монго трябва да има валиден TLS сертификат(issued by certificate authority или self-signed cert),верифициращ identity-то на всеки от сървърите в replica set-a.
+Always enable TLS.
+В Atlas e enabled по default,в self-managed deployment-не.За да включум TLS-a трябва да имаме TLS сертификат в pim файл на всеки от сървърите в релика сета.
 
-- encryption at rest - процесът по енкриптване на данните съхранявани в базата.
+**Deploy 3 member replica set with TLS enabled:**
+
+![title](./resources/enableTLS.png)
+![title](./resources/enableTLS2.png)
+- Повтаряме същите стъпки за остналите сървъри от replice set-a
+- Рестартираме mongod на всеки сървър:```sudo systemctl restart mongod```
+- Създаваме (initiate) replica set-a:
+  - connect-ваме се към mongod0 с connection string включващ следните TLS опции:
+  ![title](./resources/connectToInstanceWithTLS.png)
+  ![title](./resources/replicaSetInit.png)
+- Тестваме,че сме конфигурирали TLS успешно:
+![title](./resources/connectWithTLS.png)
+![title](./resources/testTLSconfWithBadConnectionString.png)
+
+- <span style="color:orange">encryption at rest</span> - процесът по криптиране на данните в базата, заедно с backup копия-та.
 Ако криптиращият данните ключ бъде изгубен или откраднат, данните могат да станат компреметирани или недостъпни.
 Също encryption at rest не работи срещу вътрешни заплахи-от(insider attacks) вече оторизирани user-и.
 Също не може да защити вече декриптираните данни по време на обработка в RAM паметта.
+  <span style="color:orange">Encrypted Storage Engine</span>-а криптира data file-овете на диска, които могат да се декриптират само със съответния decryption ключ.Engine-a е наличен само за mongo enterprise.
+File system and full disk encryption са external подходите за постигане на encryption at rest при отсъствието на Encrypted Storage Engine.
 
-- in-use encryption - предпазва от insider attacks, криптивайки данните изпращани от client app-a към базата (CSFLE/ client-side field level encryption). Така данните заредени в РАМ паммета също са криптирани.
+- <span style="color:orange">in-use encryption</span> - данните се криптират в app-a още преди да бъдат изпратени към базата и се декриптират, когато отново постъпят в app-a, така server-a работи само с криптирани данни.
+Предпазва от insider attacks и в монго се постига със <span style="color:orange">CSFLE/ client-side field level encryption</span>. Така данните заредени в РАМ паммета също са криптирани.
 Данните се криптират и декриптират в client app-a, server-a работи само с криптирани данни.
+  <span style="color:orange">CSFLE осигурява in-use encryption, at rest encryption и transport encryption</span>
+Със CSFLE можем да криптираме отделни полета в документ,преди да го изпратим по мрежата към базата.По този нячин те няма да бъдат expose-нати в plain text по време на query lifecycle-a.
+В същото време client-a взима декриптиращи ключове от key management system-a.
+CSFLE работи за community и enterprise, но community версия изисква ръчно настройване на encryption логиката в app-a с помощта на монгодб encryption библиотеката.
+При enterprise имаме автоматично криптиране и декриптиране, като посочваме полетата за криптиране в JSON schema-та
 
-Със CSFLE можем да криптираме отделни полета в документ.По този нячин те няма да бъдат expose-нати в plain text по време на query lifecycle-a
-
+### <span style="color:darkgoldenrod">Инсталиране на replica set,който приема само кънекции криптирани с TLS?
