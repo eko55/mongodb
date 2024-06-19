@@ -55,6 +55,9 @@ ObjectId е data type за създаване на уникални id-та.
 ![title](./resources/2_deploySlashCreateCluster.png)
 ![title](./resources/3_CreateFirstUserAndAddIpToClusterAccessList.png)
 
+<span style="color:yellow"> TODO Connect to atlas cluster with MongoDB Compass: 
+<span style="color:yellow"> TODO Connect to atlas cluster with mongo shell: 
+
 ### <span style="color:darkgoldenrod"> Стартирай MongoDB в docker контейнер
 
     > docker pull mongo
