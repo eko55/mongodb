@@ -126,4 +126,20 @@ Edit function:
 
 ### <span style="color:darkgoldenrod"> How to exit mongosh?
 Run exit, quit, or press Ctrl + D on your keyboard.
-  
+
+### <span style="color:darkgoldenrod"> How to store query results to a JSON file?
+NodeJS fs модула предоставя API за интеракция с файловата система
+
+    const docs = db.customers.find().limit(10).toArray()
+    fs.writeFileSync('/app/customers.json', EJSON.stringify(docs, null, 2));
+
+    EJSON.stringify({ name: “Test User”, dob: new Date(“1990-01-01”)});
+
+### <span style="color:darkgoldenrod"> How to generate seed data and store it in MongoDB?
+Use faker package
+![title](./resources/generateDocumentsWithFakerPackage.png)
+![title](./resources/generateData.png)
+
+### <span style="color:darkgoldenrod"> How provide npm package to an external script?
+1. install the package globally and then require it in the script
+2. install the package in the same directory as the script and then require it in the script.
