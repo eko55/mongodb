@@ -5,6 +5,8 @@ replication is the process of storing multiple copies of data across multiple se
 Всяка mongod инстанция в replica set се нарична <span style="color:orange">replica member</span>.
 Чрез replica set-a постигаме fault tolerance, high availability и data durability.
 
+The secondary is responsible for replicating the data from the primary. The secondary does this by duplicating the primary's oplog entries and applying the operations to their datasets. As a result, the secondaries' datasets reflect the primary's dataset.
+
 <span style="color:orange">High availability</span> - данните в базата са достъпни дори в случай на failures и maintenance.В монго това се постига чрез automatic failover.Ако primery node-a падне, автоматично се избира secondary node, който да заеме мястото му.В случай на maintenance HA се постига чрез rolling maintenance - ъпдейтване на нодовете един по един.
 
 <span style="color:orange">Fault tolerance</span> - системата не губи данни в случай на hardware failures и други проблеми.В монго това се постига чрез поддържането на множество копия на данните сред node-овете в replication set-a.
@@ -21,15 +23,17 @@ replica set се състои от един <span style="color:orange">primary n
 
 <span style="color:orange">failover</span> - процесът по избиране на нов primary node-a (election), когато съществуващият стане unavailable и възстановяване на нормалния работен процес с новия primary node
 
-Кога настъпва election?
-    - когато primary node-a стаме unresponsive
-    - при създаване на replica set
-    - при добавянето на нов node към replica set-a
-    - rs.stepDown()
-    - rs.config()
-    - ако secondary node-овете загубят връзка с primary node-a за повече от конф. timeout (10s default)
+### <span style="color:darkgoldenrod"> Кога настъпва election?
+- когато primary node-a стаме unresponsive
+- при създаване на replica set
+- при добавянето на нов node към replica set-a
+- rs.stepDown()
+- rs.config()
+- ако secondary node-овете загубят връзка с primary node-a за повече от конф. timeout (10s default)
 
-Как протича election?
+An election in MongoDB does not always lead to a change of the primary node
+
+### <span style="color:darkgoldenrod"> Как протича election?
 The secondary that initiated the elections shares how recent its data is and shares the election term, which is a count to track the number of elections.It votes for itself.
 Odd number of voting members гарантира избирането на primary member в случай на network partition(?)
 Всеки replica set член има priority value, което индикира eligibility на члена да стане primary.По default е 1 за всеки secondary. За да направим някой член по-eligible можем да му дадем стойност между 0 и 1000.
@@ -123,11 +127,16 @@ Get and set replica set RW concerns:
 ![title](./resources/getAndSetRWConcernForReplicaSet.png)
 
 ### <span style="color:darkgoldenrod">How to deploy 3 member replica set?
+
 1.Provision 3 separate Ubuntu servers
+
 2.Open firewall between those 3 servers so they can communicate with each other
+
 3.Install mongodb on the servers
+
 4.Each server has DNS record like mongod0.replset.com,mongod1.replset.com,mongod2.replset.com 
 associated with the respective non-local IP address
+
 5.Before we deploy replica set we need to secure our servers by creating a shared password file
 known as a key file on the server, that each server will use to authenticate with one another.In production we 
 would prefer something like an x509 certificate instead of just a key file.
@@ -144,3 +153,7 @@ Copy the generated file from mongod0 server to the other 2.
 //rs.initiate() is used to create a replica set.
 
 ...LESSON 7: CONFIGURING A REPLICA SET IN A MONGODB DEPLOYMENT
+
+By default, a three-member replica set has three voting members.
+
+Not having the appropriate write concerns can cause replication lag. If you are performing a large data ingestion or bulk load operation that requires a large number of writes to the primary, particularly unacknowledged writes, the secondaries will not be able to read the oplog fast enough to keep up with changes.

@@ -1,5 +1,9 @@
-### <span style="color:darkgoldenrod"> Where are mongodb log files stored?
-Mongodb log file path can be seen in <span style="color:darkgoldenrod">/etc/mongod.conf</span> under <span style="color:darkgoldenrod">systemLog.path</span>
+### <span style="color:darkgoldenrod"> Къде се посочва локацията на лог файлa в Монго?
+Локацията на лог файла в Монго по подразбиране е <span style="color:darkgoldenrod">/var/log/mongodb/mongod.log</span> ,но може
+да бъде променена в <span style="color:darkgoldenrod">/etc/mongod.conf</span> файла под <span style="color:darkgoldenrod">systemLog.path</span> или 
+чрез подаване на <span style="color:darkgoldenrod">--logpath</span> аргумента при стартиране на mongod процеса ("ps aux | grep mongod" може да покаже неговата стойност).
+
+//C:\Program Files\MongoDB\Server\<version>\log\mongod.log - windows location
 
 **systemLog.destination: file** - пише във файл
 
@@ -7,26 +11,31 @@ Mongodb log file path can be seen in <span style="color:darkgoldenrod">/etc/mong
 
 **systemLog.destination:** - пише в stdout
 
-Default location is <span style="color:darkgoldenrod">/var/log/mongodb/mongod.log
-
-Пътят до log file-ът може да е посочен при стартиране на mongod процеса чрез --logpath аргумента. "ps aux | grep mongod" може да покаже неговата стойност
-
 Логовете са в JSON формат.
 
 ![title](./resources/locateLogFiles.png)
 
 ![title](./resources/logMessage.png)
 
-COMMAND компонента посочва че log msg-a е свързан с CRUD операция
-CONTROL посочка OS level warning, който може да афектра монго
-ACCESS посочва неуспешни операции поради липса на authorization
-REPL индикира за msg генериран по време на replication
-ELECTION индикира за msg генериран по време на primary node election
+<span style="color:darkgoldenrod">COMMAND</span> компонента посочва че log msg-a е свързан с CRUD операция
+
+<span style="color:darkgoldenrod">CONTROL</span> посочка OS level warning, който може да афектра монго
+
+<span style="color:darkgoldenrod">ACCESS</span> посочва неуспешни операции поради липса на authorization
+
+<span style="color:darkgoldenrod">REPL</span> индикира за msg генериран по време на replication
+
+<span style="color:darkgoldenrod">ELECTION</span> индикира за msg генериран по време на primary node election
 
 ### <span style="color:darkgoldenrod"> Как се четат логове от mongosh?
+Get available log filters/tags that mongo uses to group messages by name:
+
+![title](./resources/getAvailableLogFilters.png)
+
 ![title](./resources/readingLogsFromMongoShell.png)
 
-### <span style="color:darkgoldenrod"> Как да прочета последните 10 записа от log file през mongosh?
+### <span style="color:darkgoldenrod"> Как се прочитат последните n записа от log file през mongo shell-a?
+![title](./resources/getLast5RecordsFromGlobalLogFilter.png)
 
     db.adminCommand( { getLog: "global" } ).log.slice(-10)
         или
@@ -36,20 +45,21 @@ ELECTION индикира за msg генериран по време на prima
 ### <span style="color:darkgoldenrod"> Как да разследваме бавни операции през mongod лог файла?
 Чрез slowms property-то може да зададем време отвъд което операция се счита за бавна. Default-ната стойност е 100ms.
 
-slowms property-то може да се зададе по няколко начина:
+slowms property-то може да се зададе по 3 начина:
 
     - Чрез --slowms параметъра при стартиране на монго процеса
     - Чрез db.setProfilingLevel(0, {slowms:30}) в mongosh
+    - Чрез добавяне на slowOpsThreshold property-то в configuration файл
 
     sudo grep "Slow query" /var/log/mongodb/mongod.log | jq
 
-### <span style="color:darkgoldenrod"> За какво служи verbosity level-a?
+### <span style="color:darkgoldenrod"> За какво служи log level verbosity-то?
 Чрез verbosity level-a можем да регулираме количеството логвана информация за всеки компонент.
 По default е 0, за да спестим disk space. -> Логват се само FATAL ERRORS,WARNING and INFO msgs.
 
     db.adminCommand({ getParameter: 1, logLevel: 1 }) //get current verbosity level
 
-### <span style="color:darkgoldenrod"> Как да set-нем verbosity level-a глобално?
+### <span style="color:darkgoldenrod"> Как глобално да set-нем log level-a?
 
     db.getLogComponents().index;
     db.setLogLevel(1);
@@ -85,7 +95,8 @@ log rotation e процесът по редовната подмяна на ло
 Препоръчително е да се автоматизира на база конкретен размер или времеви период.
 Могат да възникнат performance проблеми ако лог файловете и db файловете са разположени на едно място.
 
-За self-managed deployment-и лог файловете се пазят неограничено,освен ако изрично не се упомене да се rotate-ват.Това става чрез изпращането на SIGUSRР1 сигнал към монго сървиса или чрез изпълняването на db.adminCommand({logRotate:1})
+За self-managed deployment-и лог файловете се пазят неограничено,освен ако изрично не се упомене да се rotate-ват.
+Това става чрез изпращането на SIGUSRР1 сигнал към монго сървиса или чрез изпълняването на db.adminCommand({logRotate:1})
 
     > mongod -v --logpath /var/log/mongodb/server1.log
     > sudo kill -SIGUSR1 $(pidof mongod) OR > db.adminCommand({logRotate: 1})
@@ -103,4 +114,11 @@ Step2:
 sudo vim /etc/logrotate.d/mongod.conf
 ![title](./resources/logrorateLinuxUtilityConf.png)
 Изпраща SIGUSR сигнал всеки ден или когато файлът достигне 10mb
+
+### <span style="color:darkgoldenrod"> Кои са минималните права нужни за сваляне на логове от Atlas cluster?
+"Project Data Access Read Only" ролята (GROUP_DATA_ACCESS_READ_ONLY е нейният API еквивалент)
+
+### <span style="color:darkgoldenrod"> За колко дни се пазят логовете в Atlas?
+Логовете за всеки сървис(mongod,mongos,mongodbsql) вървящ на клъстъра се пазят за последните 30 дни.
+
 

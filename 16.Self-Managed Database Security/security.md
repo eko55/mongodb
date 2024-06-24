@@ -13,6 +13,8 @@ Then users are granted one or more roles.
 
 auditing - logging the changes made to the data and db configuration,as well as security incidents.Add overhead to the system.
 
+Auditing is often needed to comply with regulatory requirements.For example, regulations in some industries require organizations to keep an audit trail of database actions such as user authentication and authorization events.
+
 Default auth mechanism in MongoDB is SCRAM (salted challenge response authentication mechanism)
 
 Как да създадем user в mongo using SCRAM?
@@ -27,7 +29,8 @@ Default auth mechanism in MongoDB is SCRAM (salted challenge response authentica
 ```sudo systemctl restart mongod```
 
 3.Connect to mongod with ```mongosh```. Успяваме благодарение на т.нар. localhost exception.
-За да можем да създаваме user-и и да им добавяме роли първо трябва да създадем admin user-a в admin базата.
+За да можем да създаваме user-и и да им добавяме роли първо трябва да създадем admin user-a в admin базата, като 
+преди това трябва да enabled-нем access control-a.
 ![title](./resources/createUserAdminUser.png)
 
 userAdminAnyDatabase - вградена super user роля, която позволява на user-a да създава и модифицира user-и и роли
@@ -109,4 +112,7 @@ File system and full disk encryption са external подходите за по�
 CSFLE работи за community и enterprise, но community версия изисква ръчно настройване на encryption логиката в app-a с помощта на монгодб encryption библиотеката.
 При enterprise имаме автоматично криптиране и декриптиране, като посочваме полетата за криптиране в JSON schema-та
 
+Automatic encryption is a mechanism available in MongoDB Enterprise for setting up Client-Side Field Level Encryption (CSFLE). Automatic encryption enables you to perform encrypted read and write operations without having to write code to specify how to encrypt fields.
+
 ### <span style="color:darkgoldenrod">Инсталиране на replica set,който приема само кънекции криптирани с TLS?
+Setting the net.tls.mode configuration file setting to requireTLS specifies that the server uses and accepts only TLS-encrypted connections.

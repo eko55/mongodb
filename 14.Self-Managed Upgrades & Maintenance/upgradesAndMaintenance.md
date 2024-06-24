@@ -6,7 +6,7 @@ You don't have to give up high availability when you are performing maintenance 
    - Security updates to the OS
    - Changes to replica set membership
    - Upgrading OS
-   - Creating a new index ?(Creating a new index on a replica set requires it to be built on each node in a rolling fashion.)
+   - Creating a new index ?(Creating a new index on a replica set or sharded cluster requires it to be built on each node in a rolling fashion.)
 
 ### <span style="color:darkgoldenrod"> How to perform maintenance without losing high availability for users?
 Mongo минимизира downtime-a чрез т.нар. rolling maintenance.
@@ -28,7 +28,9 @@ Mongo минимизира downtime-a чрез т.нар. rolling maintenance.
 - заменяме старите binaries с новите (например 5.0 -> 6.0)
 - тестваме апп-а с 6.0 бинарките и FCV(feature compatibility version) сетнато на 5.0
 - ако всичко е ок сетваме FCV на 6.0 by connecting to mongodb replica set and running ```db.adminCommand({setFeatureCompatibilityVersion: "6.0"})```
-  ![title](./resources/setFcvVersion.png)
+ 
+Before upgrading, you should confirm that each member of the replica set has the same feature compatibility version. The feature compatibility version enables or disables the features that persist data and are incompatible with earlier versions of MongoDB.
+![title](./resources/setFcvVersion.png)
 
 Пример:
 - логваме се на secondary node 
@@ -56,3 +58,24 @@ The server API option enables the Stable API feature. When you use Stable API fe
 
 ### <span style="color:darkgoldenrod">  Retrieve the current version of MongoDB
 ```mongosh --quiet --eval 'db.version()'```
+
+Пример за rolling maintenance при създаване на индекс:
+Индексът се създава последователно на всеки член от replica set-a,за да се избегне downtime
+
+  1.connect to secondary node
+
+    db.getMongo().setReadPref('secondary');
+    rs.secondaryOk();
+    rs.freeze(1200);  // Freeze for 20 minutes (1200 seconds)
+    db.collection.createIndex({ yourField: 1 });
+    rs.freeze(0);  // Unfreeze
+
+    db.currentOp({ "msg": /Index Build/ }); //monitor the progress of the index creation
+
+    db.getSiblingDB('admin').runCommand({ listIndexes: "yourCollection" }); //Ensure Cluster-Wide Index Creation
+
+To avoid breaking your application, you should ensure that the MongoDB version is compatible with the MongoDB driver that you plan to use.
+
+
+
+
