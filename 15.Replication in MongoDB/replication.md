@@ -54,20 +54,25 @@ secondary node-овете pull-ват oplog entry-тата на primary node-a �
 операции в същия ред.
 
 ![title](./resources/oplogCollection.png)
+
 ![title](./resources/oplog2.png)
+
 If ```db.sales.updateMany()``` updated 5000 docs we will have 5000 entries in the oplog.
 
 ```db.sales.updateMany()``` === ```db.sales.updateOne(...) x 5000```
+
 ![title](./resources/oplogEntries.png)
 
 Можем да възстановим базата до даден момент в oplog-a.
 
 ```rs.printReplicationInfo()``` - връща информация за oplog-a,като размер и oplog window
+
 ![title](./resources/getInfoAboutTheCurrentOplog.png)
 
 <span style="color:darkgoldenrod">oplog window</span> - времето в което трябва да се вместим по време на maintenance ако искаме да избегнем initial sync(копиране на цялата data заедно с oplog-a от друг член в replication set-a)
 
 Чрез  ```rs.printSecondaryReplicationInfo()``` командата можем да видим lag-ът между primary и secondary нодовете:
+
 ![title](./resources/primaryAgainstSecondariesOplogs.png)
 
 Причини за replication lag : network latency, disk throughput, long-running operations, not having the appropriate write concerns
@@ -98,6 +103,7 @@ Default-ния read concern e "local", data-та се чете само от nod
 е acknowledged-ната от друг node.
 ### <span style="color:darkgoldenrod">Как да конфигурираме write concern?
 Директно в операцията:
+
 ![title](./resources/writeConcern.png)
 - wtimeout гарантира ,че операцията няма да бъде блокирана indefinitely
 
@@ -111,6 +117,7 @@ majority acknowledged data is durable data
 
 Change read and write concerns for all users:
 -connect to admin database and run:
+
 ![title](./resources/changeConcernsForAllUsers.png)
 -setDefaultRWConcern is the name of the admin command we are calling
 
@@ -136,6 +143,7 @@ Read concern lets your application specify a durability guarantee for the docume
 Read preference allows you to determine from which replica set members read operations will be read from. 
 
 Get and set replica set RW concerns:
+
 ![title](./resources/getAndSetRWConcernForReplicaSet.png)
 
 ### <span style="color:darkgoldenrod">How to deploy 3 member replica set?

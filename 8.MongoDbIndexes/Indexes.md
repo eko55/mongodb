@@ -156,6 +156,7 @@ Unhide-ването на иденкс е много по-бързо от нег�
 ### <span style="color:darkgoldenrod"> Какво e wildcard index?
 Index, който поддържа queries against unknown or arbitrary fields.
 Подходящ е за datasets с dynamic schemas.
+
 ![title](./resources/wildcardIndex.png)
 
 Create index on all fields in each document of a collection(usefull if you have very dynamic documents): db.products.createIndex({"$**" : 1})

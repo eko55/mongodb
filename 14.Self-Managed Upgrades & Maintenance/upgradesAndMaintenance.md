@@ -18,10 +18,13 @@ Mongo минимизира downtime-a чрез т.нар. rolling maintenance.
 ```mongosh --quiet --eval 'db.version()'```
 - проветете compatibility таблиците за съвместимост(м/у mongodb и mongo driver-a за app-a)
 - проверете колко време имаме да извършим upgrade-a на даден node на база oplog прозореца(разликата между най-старите и последните опрации в oplog-a),за да избегнем full resync
+
   ![title](./resources/findOutOplogWindow.png)
 - проверете,че съответния node e healthy (не е в rollback или recovery state)
+
   ![title](./resources/replicaSetMembersState.png)
 - проверете,че secondary node-овете не се опитват да catch up-нат предишни event-и(че няма replication lag)
+
   ![title](./resources/checkForReplicationLag.png)
 
 По време на upgrade:
@@ -30,6 +33,7 @@ Mongo минимизира downtime-a чрез т.нар. rolling maintenance.
 - ако всичко е ок сетваме FCV на 6.0 by connecting to mongodb replica set and running ```db.adminCommand({setFeatureCompatibilityVersion: "6.0"})```
  
 Before upgrading, you should confirm that each member of the replica set has the same feature compatibility version. The feature compatibility version enables or disables the features that persist data and are incompatible with earlier versions of MongoDB.
+
 ![title](./resources/setFcvVersion.png)
 
 Пример:
@@ -43,13 +47,16 @@ Before upgrading, you should confirm that each member of the replica set has the
 - потвърдете,че версията е ъпдейтната
 - изчакайте докато secondary node-a catch up-не с останалите node-ве от cluster-a
 - повторете горните стъпки за останалите secondary node-ве
+
   ![title](./resources/upgradeMongo.png)
   ![title](./resources/confirmVersionUpdate.png)
 - логваме се на primary node-a
 - потвърждаме,че node-a в действителност е primary node-a
+
   ![title](./resources/upgradePrimaryNode1.png)
 - стартираме election за нов primary node ```rs.stepDown()```
 - изчакваме няколко секунди преди да потвърдим ,че primary node-a е сменен
+
   ![title](./resources/upgradePrimaryNode2.png)
 
 Upgrade-ването може да подобри или да влоши performance-a.Тествайте преди push на production.

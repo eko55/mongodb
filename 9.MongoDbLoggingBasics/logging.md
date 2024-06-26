@@ -66,6 +66,7 @@ slowms property-то може да се зададе по 3 начина:
     db.getLogComponents().index;
 
 Change conf file(requires restart):
+
 ![title](./resources/globalVerbosityLevel.png)
 
 След промянва на verbosity-то в mongod.conf файла трябва да рестартираме mongodb сървиса.
@@ -95,6 +96,8 @@ log rotation e процесът по редовната подмяна на ло
 Препоръчително е да се автоматизира на база конкретен размер или времеви период.
 Могат да възникнат performance проблеми ако лог файловете и db файловете са разположени на едно място.
 
+Effective log retention involves setting policies for how long logs should be retained, how they should be rotated, and how old log files should be archived or deleted.
+
 За self-managed deployment-и лог файловете се пазят неограничено,освен ако изрично не се упомене да се rotate-ват.
 Това става чрез изпращането на SIGUSRР1 сигнал към монго сървиса или чрез изпълняването на db.adminCommand({logRotate:1})
 
@@ -108,10 +111,12 @@ log rotation e процесът по редовната подмяна на ло
 logrotate linux utility can be used for log rotation.It requires mongod.conf file configuration:
 
 Step1:
+
 ![title](./resources/logRotateConfigSetup.png)
 
 Step2:
 sudo vim /etc/logrotate.d/mongod.conf
+
 ![title](./resources/logrorateLinuxUtilityConf.png)
 Изпраща SIGUSR сигнал всеки ден или когато файлът достигне 10mb
 

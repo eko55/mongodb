@@ -104,15 +104,16 @@ For our mongodb deployment we have created physical volume on one of our provisi
 //move the archive to different location for safer storage
 
 Restore mongo from tar file:
-1.sudo mkdir /mdb
-2.sudo tar -xzf mdb-snapshot.tar.gz -C /mdb
-3.sudo systemctl stop -l mongod | sudo systemctl status -l mongod
-//make the mondogb user and group the owner of /mdb dir and all of its files, otherwise the server will fail to start after we change the db path in the conf file
-4.sudo chown -R mongodb:mongodb /mdb
-//change the db path in the mongo.conf file
-5.sudo nano /etc/mongod.conf
-dbPath: /mdb
-6.sudo systemctl start -l mongod | sudo systemctl status -l mongod
+
+    1.sudo mkdir /mdb
+    2.sudo tar -xzf mdb-snapshot.tar.gz -C /mdb
+    3.sudo systemctl stop -l mongod | sudo systemctl status -l mongod
+    //make the mondogb user and group the owner of /mdb dir and all of its files, otherwise the server will fail to start after we change the db path in the conf file
+    4.sudo chown -R mongodb:mongodb /mdb
+    //change the db path in the mongo.conf file
+    5.sudo nano /etc/mongod.conf
+    dbPath: /mdb
+    6.sudo systemctl start -l mongod | sudo systemctl status -l mongod
 
 = L5. Backing up a mongodb deployment =
 replica set - group of MongoDB instances,maintaining the same data set.Replica sets are the primary way of implementing replication accross multiple server in MongoDB.
