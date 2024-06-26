@@ -1,11 +1,13 @@
-replication is the process of storing multiple copies of data across multiple servers and keeping them synchronized
-
+### <span style="color:darkgoldenrod"> Какво наричаме replication?
 <span style="color:orange">replication</span> е процесът по съхраняване на множество копия от данни върху няколко сървъра, поддържайки отделните копия синхронизирани
 Групата от сървъри участващи в replication процеса формират <span style="color:orange">replica set</span> .
 Всяка mongod инстанция в replica set се нарична <span style="color:orange">replica member</span>.
 Чрез replica set-a постигаме fault tolerance, high availability и data durability.
 
 The secondary is responsible for replicating the data from the primary. The secondary does this by duplicating the primary's oplog entries and applying the operations to their datasets. As a result, the secondaries' datasets reflect the primary's dataset.
+
+### <span style="color:darkgoldenrod"> Какво наричаме automatic failover?
+Ако primary node-a падне, автоматично се избира secondary node, който да заеме мястото му.(чрез election)
 
 <span style="color:orange">High availability</span> - данните в базата са достъпни дори в случай на failures и maintenance.В монго това се постига чрез automatic failover.Ако primery node-a падне, автоматично се избира secondary node, който да заеме мястото му.В случай на maintenance HA се постига чрез rolling maintenance - ъпдейтване на нодовете един по един.
 
@@ -44,7 +46,8 @@ Odd number of voting members гарантира избирането на primar
 By default, a three-member replica set has three voting members.
 
 ### <span style="color:darkgoldenrod">Какво е oplog?
-oplog е колекция, която пази последните write операции изпълнени върху инстанцията.Тя е с фиксиран размер (5% of available space,max 50GB), 
+oplog е колекция, която пази последните write операции изпълнени върху инстанцията.
+Тя е с фиксиран размер (5% of available space,max 50GB), 
 като момента ,в който се запълни най-старите записи се презаписват с нови.
 
 secondary node-овете pull-ват oplog entry-тата на primary node-a и прилагат същите
@@ -88,6 +91,11 @@ write concern опции:
   
     db.users.insertOne({ name: 'Jade', age: 20, "last_updated": new Date() }, { writeConcern: { w: 1 } })
 
+    db.collection.find().readConcern("majority") //used for critical read operations where data consistency is crucial
+
+Default-ните write concern e w:1 ,който изисква acknowledgement само от primary node-a.
+Default-ния read concern e "local", data-та се чете само от node-a към който е насочена заявката и не се гарантира, че 
+е acknowledged-ната от друг node.
 ### <span style="color:darkgoldenrod">Как да конфигурираме write concern?
 Директно в операцията:
 ![title](./resources/writeConcern.png)
@@ -108,9 +116,13 @@ Change read and write concerns for all users:
 
 ### <span style="color:darkgoldenrod">Какво е read preference?
 read preference посочва членовете от които искаме да четем.По default read preference е primary.
+
 primaryPreferred - goes to secondary if primary is not available
+
 secondary - read from secondaries
+
 secondaryPreferred - read from primary if secondaries are not available
+
 nearest - чете от най-близкия член в мрежата
 
 четенето от secondary крие възможността от това да получим stale data

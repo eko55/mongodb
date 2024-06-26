@@ -31,7 +31,7 @@ MongoDB не изисква данните да следват определе�
 Практичеки пример е съхраняването на log записи.
 
 ### <span style="color:darkgoldenrod"> Кои са основните типове от данни поддържани в MongoDB?
-JSON data types: string, object, array, boolean ,null
+JSON data types: string, number, object, array, boolean ,null
 
 BSON data types: JSON data types + Dates, Numbers, Object ID's
 
@@ -68,3 +68,20 @@ ObjectId е data type за създаване на уникални id-та.
         root@5734553:/# mongosh
         test> show dbs
         test> db.help()     //show commonly used commands
+
+### <span style="color:darkgoldenrod"> How BSON is Stored in MongoDB Database?
+https://www.mongodb.com/resources/languages/bson
+
+JSON:
+
+    {
+        "hello" : "world"   
+    }
+
+BSON:
+
+    \x16\x00\x00\x00             // total document size
+    \x02                         // 0x02 = type String
+    hello\x00                    // field name
+    \x06\x00\x00\x00world\x00    // field value (size of value, value, null terminator         
+    \x00                         // 0x00 = type EOO ('end of object')

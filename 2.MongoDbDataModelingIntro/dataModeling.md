@@ -46,7 +46,9 @@ Data modeling е процесът по определяне структурат
 Типове връзки между данните:
 
 1.one to one - one entity from one set is connected to exactly one entity from another set
-2.one to many - едно entity от даден set е свързано с много entity-та от друг set
+
+2.one to many - едно entity от даден set може да е свързано с много entity-та от друг set
+
 3.many to many
 
 В релационните бази можем да свържем резултатите от две таблици имащи one-to-one relationship използвайки JOIN.
