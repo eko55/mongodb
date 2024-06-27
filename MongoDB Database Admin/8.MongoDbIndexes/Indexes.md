@@ -24,7 +24,7 @@ Index-ите също могат да намалят времето за сор�
 
 За всяка колекция има един дефолтен индекс,включващ само _id полето.
 
-![title](./resources/indexes_1.png)
+![title](resources/indexes_1.png)
 
 <span style="color:orange">Когато добавяме нов документ или ъпдейтваме индексирано поле във вече съществуващ документ, трябва да ъпдейтнем и индекса.</span>
 
@@ -80,7 +80,7 @@ explain method verbosity modes:
     - executionStats
     - allPlansExecution
 
-![title](./resources/executionStats.png)
+![title](resources/executionStats.png)
 - nReturned показва броя документи върнати от query-то.Ако този брой отговаря на броя examined documents and keys значи индекса работи оптимално.В противен случай индексът може да се оптимизира.
 
 - totalDocsExamined броят на итерирани документи в следствие на query-то
@@ -102,23 +102,23 @@ explain method verbosity modes:
 <span style="color:orange">PROJECTION_COVERED</span> - индикира,че query-то е fully covered от index-а
 
 #### <span style="color:darkgoldenrod"> Winning plan на заявка непокрита от индекс:
-![title](./resources/queryNotCoveredByIndex.png)
+![title](resources/queryNotCoveredByIndex.png)
 
 #### <span style="color:darkgoldenrod"> Winning plan на заявка използваща индекс, но не е напълно покрита от него:
-![title](./resources/queryNotFullyCoveredByIndex.png)
+![title](resources/queryNotFullyCoveredByIndex.png)
 
 Друг пример:
 
     db.users.createIndex({ birthdate: 1 })
     db.customers.explain().find({birthdate: {$gt: ISODate("1995-08-01")}}).sort({email: 1})
-![title](./resources/winningPlan.png)
+![title](resources/winningPlan.png)
 
 #### <span style="color:darkgoldenrod"> Winning plan на заявка изцяло покрита от индекс:
 Ако с projection заявим само полета покрити от index, FETCH stage-а няма да е нужен,защото цялата информация ще бъде върната от индеска:
 
     db.users.createIndex({ birthdate: 1, email: 1 })
 
-![title](./resources/queryCoveredByIndex2NoFetch.png)
+![title](resources/queryCoveredByIndex2NoFetch.png)
 
 ### <span style="color:darkgoldenrod">  Какво е multikey index?
 Индекс ,в който едно от индексираните полета е масив.
@@ -157,7 +157,7 @@ Unhide-ването на иденкс е много по-бързо от нег�
 Index, който поддържа queries against unknown or arbitrary fields.
 Подходящ е за datasets с dynamic schemas.
 
-![title](./resources/wildcardIndex.png)
+![title](resources/wildcardIndex.png)
 
 Create index on all fields in each document of a collection(usefull if you have very dynamic documents): db.products.createIndex({"$**" : 1})
 
@@ -205,12 +205,12 @@ Time series data обикновенно се състои от 3 компоне�
         },
     })
 
-![title](./resources/queryTimeSeriesCollection.png)
+![title](resources/queryTimeSeriesCollection.png)
 
 ### <span style="color:darkgoldenrod"> How to monitor indexes?
 Use $indexStats aggregation operator:
 
-![title](./resources/indexUsage.png)
+![title](resources/indexUsage.png)
 
 Use database profiler:
 When database profiler is enabled database operations will be recorded in the system.profile capped collection.

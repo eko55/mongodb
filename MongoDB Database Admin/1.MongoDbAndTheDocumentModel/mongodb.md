@@ -13,7 +13,7 @@ BSON(binary json) е extension на JSON като поддържа допълн�
         "key": value,
         "key" : value
     }
-![title](./resources/exampleDocument.png)
+![title](resources/exampleDocument.png)
 
 Документите се пазят в колекции.
 Колекциите се пазят в databases.
@@ -53,9 +53,9 @@ ObjectId е data type за създаване на уникални id-та.
 Платформа предлагаща Cloud hosted database instances + GUI(Atlas Data Explorer) за взаимодействие с базата, 
 аналогично на MongoDB Compass.
 
-![title](./resources/1_CreateClusterMongoDbAtlasPlatform.png)
-![title](./resources/2_deploySlashCreateCluster.png)
-![title](./resources/3_CreateFirstUserAndAddIpToClusterAccessList.png)
+![title](resources/1_CreateClusterMongoDbAtlasPlatform.png)
+![title](resources/2_deploySlashCreateCluster.png)
+![title](resources/3_CreateFirstUserAndAddIpToClusterAccessList.png)
 
 <span style="color:yellow"> TODO Connect to atlas cluster with MongoDB Compass: 
 <span style="color:yellow"> TODO Connect to atlas cluster with mongo shell: 

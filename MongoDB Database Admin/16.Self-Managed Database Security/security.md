@@ -82,9 +82,9 @@ Example of Secure Connection String using TLS/SSL looks like this:
 Въпреки,че аутентикацията е активирана,успяваме да се свържем с базата през mongo shell-a без да подаваме credential-и 
 благодарение на т.нар. localhost exception.Това ни позволява да създадем първия user, с който в последствие ще 
 създаваме нови user-и и роли. Веднъж когато имаме създаден user в admin базата localhost exception-a вече не е валиден.
-![title](./resources/createUserAdminUser.png)
+![title](resources/createUserAdminUser.png)
 
-![title](./resources/logInWithUser.png)
+![title](resources/logInWithUser.png)
 
 ### <span style="color:darkgoldenrod">Свързване към default-ната база с конкретен user:
 
@@ -109,8 +109,8 @@ Localhost exception - позволява да се свържем с localhost �
 
 ### <span style="color:darkgoldenrod">Настройване на authorization чрез Role Based Access Control.
 Добавяне на роля към потребител при неговото създаване:
-![title](./resources/createUser.png)
-![title](./resources/confrimReadPermissions.png)
+![title](resources/createUser.png)
+![title](resources/confrimReadPermissions.png)
 
 ### <span style="color:darkgoldenrod"> Отнемане роля на потребител:
 
@@ -125,9 +125,9 @@ Localhost exception - позволява да се свържем с localhost �
 
     db.getUser("analystUser")
 
-![title](./resources/revokeUserRole.png)
+![title](resources/revokeUserRole.png)
 
-![title](./resources/createUser2.png)
+![title](resources/createUser2.png)
 
 ### <span style="color:darkgoldenrod">Как да актвираме auditing?
 - Добавяйки --auditDestination опцията при стартиране на mongod.
@@ -144,7 +144,7 @@ Localhost exception - позволява да се свържем с localhost �
         format: JSON
         path: /var/log/mongodb/auditLog.json
 
-![title](./resources/auditLog.png)
+![title](resources/auditLog.png)
 
 ### <span style="color:darkgoldenrod">Какво е encryption?
 Encoding data to ensure only permitted users can read it.
@@ -161,17 +161,17 @@ Always enable TLS.
 
 **Deploy 3 member replica set with TLS enabled:**
 
-![title](./resources/enableTLS.png)
-![title](./resources/enableTLS2.png)
+![title](resources/enableTLS.png)
+![title](resources/enableTLS2.png)
 - Повтаряме същите стъпки за остналите сървъри от replice set-a
 - Рестартираме mongod на всеки сървър:```sudo systemctl restart mongod```
 - Създаваме (initiate) replica set-a:
   - connect-ваме се към mongod0 с connection string включващ следните TLS опции:
-  ![title](./resources/connectToInstanceWithTLS.png)
-  ![title](./resources/replicaSetInit.png)
+  ![title](resources/connectToInstanceWithTLS.png)
+  ![title](resources/replicaSetInit.png)
 - Тестваме,че сме конфигурирали TLS успешно:
-![title](./resources/connectWithTLS.png)
-![title](./resources/testTLSconfWithBadConnectionString.png)
+![title](resources/connectWithTLS.png)
+![title](resources/testTLSconfWithBadConnectionString.png)
 
 ### <span style="color:darkgoldenrod">Еncryption at rest
 <span style="color:darkgoldenrod">Описание:</span>

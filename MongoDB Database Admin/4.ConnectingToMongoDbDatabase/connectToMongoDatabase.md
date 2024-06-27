@@ -54,11 +54,11 @@ Organization -> Project -> Cluster -> Connect
 
 ### <span style="color:darkgoldenrod"> Писане и изпълнение на JS код в mongosh:
 mongosh is NodeJS REPL среда, което означава, че в shell-a можем да дефинираме променливи,функции и т.н.
-![title](./resources/runJsInMongosh.png)
+![title](resources/runJsInMongosh.png)
 
 ### <span style="color:darkgoldenrod"> Възможни network access errors И user authentication errors при connect-ване към Atlas:
 Ако публичното ip на машината от която искаме да се connect-нем не присъства в Network Access -> IpAccessList-a в Atlas:
-![title](./resources/publicIpNotSpecifiedInIpAccessListInAtlas.png)
+![title](resources/publicIpNotSpecifiedInIpAccessListInAtlas.png)
 
 Ако паролата е грешна или сме подали адрес на друга база в connection string-a:
-![title](./resources/AuthFailed.png)
+![title](resources/AuthFailed.png)

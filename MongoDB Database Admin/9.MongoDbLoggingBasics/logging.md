@@ -13,9 +13,9 @@
 
 Логовете са в JSON формат.
 
-![title](./resources/locateLogFiles.png)
+![title](resources/locateLogFiles.png)
 
-![title](./resources/logMessage.png)
+![title](resources/logMessage.png)
 
 <span style="color:darkgoldenrod">COMMAND</span> компонента посочва че log msg-a е свързан с CRUD операция
 
@@ -30,12 +30,12 @@
 ### <span style="color:darkgoldenrod"> Как се четат логове от mongosh?
 Get available log filters/tags that mongo uses to group messages by name:
 
-![title](./resources/getAvailableLogFilters.png)
+![title](resources/getAvailableLogFilters.png)
 
-![title](./resources/readingLogsFromMongoShell.png)
+![title](resources/readingLogsFromMongoShell.png)
 
 ### <span style="color:darkgoldenrod"> Как се прочитат последните n записа от log file през mongo shell-a?
-![title](./resources/getLast5RecordsFromGlobalLogFilter.png)
+![title](resources/getLast5RecordsFromGlobalLogFilter.png)
 
     db.adminCommand( { getLog: "global" } ).log.slice(-10)
         или
@@ -67,7 +67,7 @@ slowms property-то може да се зададе по 3 начина:
 
 Change conf file(requires restart):
 
-![title](./resources/globalVerbosityLevel.png)
+![title](resources/globalVerbosityLevel.png)
 
 След промянва на verbosity-то в mongod.conf файла трябва да рестартираме mongodb сървиса.
 
@@ -85,7 +85,7 @@ Change conf file(requires restart):
     db.setProfilingLevel(0, { slowms: 20 });
     db.getProfilingStatus();
 
-![title](./resources/ComponentSpecificVerbosityLevel.png)
+![title](resources/ComponentSpecificVerbosityLevel.png)
 
 След промянва на verbosity-то в mongod.conf файла трябва да рестартираме mongodb сървиса.
 
@@ -112,12 +112,12 @@ logrotate linux utility can be used for log rotation.It requires mongod.conf fil
 
 Step1:
 
-![title](./resources/logRotateConfigSetup.png)
+![title](resources/logRotateConfigSetup.png)
 
 Step2:
 sudo vim /etc/logrotate.d/mongod.conf
 
-![title](./resources/logrorateLinuxUtilityConf.png)
+![title](resources/logrorateLinuxUtilityConf.png)
 Изпраща SIGUSR сигнал всеки ден или когато файлът достигне 10mb
 
 ### <span style="color:darkgoldenrod"> Кои са минималните права нужни за сваляне на логове от Atlas cluster?

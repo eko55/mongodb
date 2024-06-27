@@ -53,27 +53,27 @@ oplog е колекция, която пази последните write опе
 secondary node-овете pull-ват oplog entry-тата на primary node-a и прилагат същите
 операции в същия ред.
 
-![title](./resources/oplogCollection.png)
+![title](resources/oplogCollection.png)
 
-![title](./resources/oplog2.png)
+![title](resources/oplog2.png)
 
 If ```db.sales.updateMany()``` updated 5000 docs we will have 5000 entries in the oplog.
 
 ```db.sales.updateMany()``` === ```db.sales.updateOne(...) x 5000```
 
-![title](./resources/oplogEntries.png)
+![title](resources/oplogEntries.png)
 
 Можем да възстановим базата до даден момент в oplog-a.
 
 ```rs.printReplicationInfo()``` - връща информация за oplog-a,като размер и oplog window
 
-![title](./resources/getInfoAboutTheCurrentOplog.png)
+![title](resources/getInfoAboutTheCurrentOplog.png)
 
 <span style="color:darkgoldenrod">oplog window</span> - времето в което трябва да се вместим по време на maintenance ако искаме да избегнем initial sync(копиране на цялата data заедно с oplog-a от друг член в replication set-a)
 
 Чрез  ```rs.printSecondaryReplicationInfo()``` командата можем да видим lag-ът между primary и secondary нодовете:
 
-![title](./resources/primaryAgainstSecondariesOplogs.png)
+![title](resources/primaryAgainstSecondariesOplogs.png)
 
 Причини за replication lag : network latency, disk throughput, long-running operations, not having the appropriate write concerns
 
@@ -104,7 +104,7 @@ Default-ния read concern e "local", data-та се чете само от nod
 ### <span style="color:darkgoldenrod">Как да конфигурираме write concern?
 Директно в операцията:
 
-![title](./resources/writeConcern.png)
+![title](resources/writeConcern.png)
 - wtimeout гарантира ,че операцията няма да бъде блокирана indefinitely
 
 Read concerns: 
@@ -118,7 +118,7 @@ majority acknowledged data is durable data
 Change read and write concerns for all users:
 -connect to admin database and run:
 
-![title](./resources/changeConcernsForAllUsers.png)
+![title](resources/changeConcernsForAllUsers.png)
 -setDefaultRWConcern is the name of the admin command we are calling
 
 ### <span style="color:darkgoldenrod">Какво е read preference?
@@ -134,7 +134,7 @@ nearest - чете от най-близкия член в мрежата
 
 четенето от secondary крие възможността от това да получим stale data
 
-![title](./resources/setReadPreferenceByAppendingReadPrOptionToConnectionString.png)
+![title](resources/setReadPreferenceByAppendingReadPrOptionToConnectionString.png)
 Четем от secondary, който е maximum 120 секунди назад
 
 ### <span style="color:darkgoldenrod">Каква е разликата между read concern и read preference?
@@ -144,7 +144,7 @@ Read preference allows you to determine from which replica set members read oper
 
 Get and set replica set RW concerns:
 
-![title](./resources/getAndSetRWConcernForReplicaSet.png)
+![title](resources/getAndSetRWConcernForReplicaSet.png)
 
 ### <span style="color:darkgoldenrod">How to deploy 3 member replica set?
 

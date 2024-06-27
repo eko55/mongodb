@@ -64,25 +64,25 @@ Plaintext файл, който ни позволява да променяме �
 - passing commands or JS code to mongosh via the --eval flag (to change settings or to return result of a query without entering the shell)
 
 Променяне на mongosh конфигурацията чрез --eval флага:
-![title](./resources/changeMongoshSettingsViaEvalFlag.png)
+![title](resources/changeMongoshSettingsViaEvalFlag.png)
 
 Изпълняване на заявка без да влизаме в shell-a, чрез --eval флага:
-![title](./resources/executeQueryWithoutEnteringMongoShell.png)
+![title](resources/executeQueryWithoutEnteringMongoShell.png)
 
     mongosh  "mongodb+srv://myAtlasDBUser:myatlas-001@myatlasclusteredu.fyvbwbb.mongodb.net/sample_analytics?appName=config-mongosh" --eval "db.customers.find({username:'samantha27'})"
 
 Подаване променливи на shell-a чрез --eval флага:
-![title](./resources/UseEvalFlagOnMongoshCommand.png)
+![title](resources/UseEvalFlagOnMongoshCommand.png)
 
 mongosh is build on top of NodeJS, so we can execute JS code within the shell
 
 ### <span style="color:darkgoldenrod"> How to write JS functions in mongosh?
 Датите в монго обикновено се записват с ISODate формат.
 Следната функция конвертира string дата в ISODate:
-![title](./resources/defineJsFunctionInMongosh.png)
+![title](resources/defineJsFunctionInMongosh.png)
 
 Можем да запишем функция в js файл и да я извикаме по следния начин:
-![title](./resources/loadJsFunctionInMongosh.png)
+![title](resources/loadJsFunctionInMongosh.png)
 
 The load() method allows you to load and use an external JavaScript file within an active mongosh session. 
 For example, if you have a file named myScript.js in the current working directory, you can load it by running load('myScript.js')
@@ -93,13 +93,13 @@ db.getSiblingDB("sample_training");
 ### <span style="color:darkgoldenrod"> How to add function in the global scope of mongosh in an editor?
 Set editor in mongosh:
 
-![title](./resources/setEditorInMongosh.png)
+![title](resources/setEditorInMongosh.png)
 
 Edit function:
 
     edit giveMeADate
 
-![title](./resources/editJsFunctionInMongosh.png)
+![title](resources/editJsFunctionInMongosh.png)
 
 
 ### <span style="color:darkgoldenrod"> За какво служи mongoshrc.js файла?
@@ -115,7 +115,7 @@ Edit function:
         test> fcv()
         { featureCompatibilityVersion: { version: '7.0' }, ok: 1 }
 
-![title](./resources/editThePromptFunctionCalledOnMongoshEnter.png)
+![title](resources/editThePromptFunctionCalledOnMongoshEnter.png)
 
 Рестартирайте шела след всяка промяна по mongoshrc.js файла.
 
@@ -137,8 +137,8 @@ NodeJS fs модула предоставя API за интеракция с ф�
 
 ### <span style="color:darkgoldenrod"> How to generate seed data and store it in MongoDB?
 Use faker package
-![title](./resources/generateDocumentsWithFakerPackage.png)
-![title](./resources/generateData.png)
+![title](resources/generateDocumentsWithFakerPackage.png)
+![title](resources/generateData.png)
 
 ### <span style="color:darkgoldenrod"> How provide npm package to an external script?
 1. install the package globally and then require it in the script

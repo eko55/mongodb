@@ -19,13 +19,13 @@ Mongo минимизира downtime-a чрез т.нар. rolling maintenance.
 - проветете compatibility таблиците за съвместимост(м/у mongodb и mongo driver-a за app-a)
 - проверете колко време имаме да извършим upgrade-a на даден node на база oplog прозореца(разликата между най-старите и последните опрации в oplog-a),за да избегнем full resync
 
-  ![title](./resources/findOutOplogWindow.png)
+  ![title](resources/findOutOplogWindow.png)
 - проверете,че съответния node e healthy (не е в rollback или recovery state)
 
-  ![title](./resources/replicaSetMembersState.png)
+  ![title](resources/replicaSetMembersState.png)
 - проверете,че secondary node-овете не се опитват да catch up-нат предишни event-и(че няма replication lag)
 
-  ![title](./resources/checkForReplicationLag.png)
+  ![title](resources/checkForReplicationLag.png)
 
 По време на upgrade:
 - заменяме старите binaries с новите (например 5.0 -> 6.0)
@@ -34,7 +34,7 @@ Mongo минимизира downtime-a чрез т.нар. rolling maintenance.
  
 Before upgrading, you should confirm that each member of the replica set has the same feature compatibility version. The feature compatibility version enables or disables the features that persist data and are incompatible with earlier versions of MongoDB.
 
-![title](./resources/setFcvVersion.png)
+![title](resources/setFcvVersion.png)
 
 Пример:
 - логваме се на secondary node 
@@ -48,16 +48,16 @@ Before upgrading, you should confirm that each member of the replica set has the
 - изчакайте докато secondary node-a catch up-не с останалите node-ве от cluster-a
 - повторете горните стъпки за останалите secondary node-ве
 
-  ![title](./resources/upgradeMongo.png)
-  ![title](./resources/confirmVersionUpdate.png)
+  ![title](resources/upgradeMongo.png)
+  ![title](resources/confirmVersionUpdate.png)
 - логваме се на primary node-a
 - потвърждаме,че node-a в действителност е primary node-a
 
-  ![title](./resources/upgradePrimaryNode1.png)
+  ![title](resources/upgradePrimaryNode1.png)
 - стартираме election за нов primary node ```rs.stepDown()```
 - изчакваме няколко секунди преди да потвърдим ,че primary node-a е сменен
 
-  ![title](./resources/upgradePrimaryNode2.png)
+  ![title](resources/upgradePrimaryNode2.png)
 
 Upgrade-ването може да подобри или да влоши performance-a.Тествайте преди push на production.
 
