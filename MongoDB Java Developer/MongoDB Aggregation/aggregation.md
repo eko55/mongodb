@@ -5,6 +5,46 @@
 //Този процес се осъществява чрез aggregation операции.
 
 Aggregation операциите ни позволяват да :
+- групираме документи по уникална стойност за дадено поле(чрез $group stage-a) и да 
+извлечем обобщени данни за всяка от получените групи(чрез aggregation accumulator-и 
+като $sum, $avg, $min, $max )
+
+Задачи: 
+0. Намерете броя на имотите под наем
+
+```db.listingsAndReviews.aggregate([{$group: {_id: null ,count: {$sum: 1}}}])```
+```db.listingsAndReviews.aggregate({$group: {_id: null,count: {$count: {}}}})```
+```db.listingsAndReviews.countDocuments()```
+
+1. Намерет броя на импотите под наем за всеки тип имот.
+
+```db.listingsAndReviews.aggregate([{$group: {_id: "$property_type",count: {$count: {}}}},{$sort: {count:-1}},{$limit: 2}])```
+
+2. Намерете размера на легловата база сред импотите под наем.
+
+   ```db.listingsAndReviews.aggregate([{$group: {_id:null, totalNumberOfBeds : {$sum: "$beds"}}}])```
+
+3. Намерете размера на легловата база сред имотите под наем за всеки тип имот.
+
+```db.listingsAndReviews.aggregate([{$group: {_id: "$property_type", totalNumberOfBeds : {$sum: "$beds"}}}])```
+
+4.Намерете средния брой легла които се падат за всеки тип имот под наем
+
+```db.listingsAndReviews.aggregate([{$group: {_id: "$property_type", avgNumberOfBeds: {$avg : "$beds"}}},{$sort: {avgNumberOfBeds: -1}},{$limit: 5}])```
+
+5.Намерете максималният брой легла за всеки от типовете имоти под наем
+
+```db.listingsAndReviews.aggregate([{$group: {_id: "$property_type", maxNumberOfBeds: {$max : "$beds"}}},{$sort: {maxNumberOfBeds: -1}},{$limit: 5}])```
+
+6.Намерете минималният брой легла за всеки от типовете имоти под наем
+
+```db.listingsAndReviews.aggregate([{$group: {_id: "$property_type", maxNumberOfBeds: {$max : "$beds"}}},{$sort: {maxNumberOfBeds: -1}},{$limit: 5}])```
+
+7.Намерете 5-те къщи с най-висока оценка
+
+```db.listingsAndReviews.aggregate([{$match: {property_type: "House"}},{$project: {property_type: 1, review_scores: 1}},{$sort: {"review_scores.review_scores_rating": -1}},{$limit: 5}])```
+```db.listingsAndReviews.find({property_type: "House"},{property_type: 1, review_scores: 1}).sort({"review_scores.review_scores_rating": -1})```
+
 - групираме заедно стойности от множество документи
 пример:...
 - да изпълняваме операции върху групирана стойност, така че да получим единична стойност
@@ -70,7 +110,7 @@ Primer:
 Примери:
 https://www.mongodb.com/docs/manual/core/aggregation-pipeline/#std-label-aggregation-pipeline-examples
 
-### <span style="color:darkgoldenrod"> Основни aggregation операция в MongoDB
+### <span style="color:darkgoldenrod"> Основни aggregation операции в MongoDB
 $match - връща документите отговарящи на даденото условие 
 
     db.article.aggregate([
@@ -141,6 +181,7 @@ accumulator-a показва как да агрегираме данните з�
         }
     }])
 
+
 Above is similar to SELECT COUNT(*) AS count FROM sales in SQL
 
 Returns:
@@ -150,6 +191,12 @@ Returns:
 -Групирай по уникални стойности за item и сумирай quantity-то за всяка група
 
     db.sales.aggregate([{$group: {_id: "$item", totalQ: {$sum: "$quantity"}}}])
+
+<span style="color:orange">Намерете броят на всички имоти в sample_airbnb.listingAndReview предлагани под наем ,
+групирани по property_type:</span>
+
+    db.listingsAndReviews.aggregate({$group: {_id: "$property_type",count: {$count: {}}}})
+
 
 -groups documents by the item field, calculating the total sale amount per item and returning only the items with total sale amount greater than or equal to 100:
 
@@ -198,9 +245,30 @@ $sort и $limit аггр. stage-овете могат да бъдат изпол
         $limit:  5
       }
     ])
+### Намерете 3-те най-предлаганите типе имоти под наем и съответният им брой на пазара:
 
-$project aggr operation-a определя полетата които ще бъдат включени в документите върнати в резултата от 
-aggr pipeline-a, и също като $set може да създава или променя стойности за нови и съществуващи полета
+    db.listingsAndReviews.aggregate([
+      {
+        "$group":{
+          "_id":"$property_type",
+          "count":{
+            "$count":{}
+          }
+        }
+      },
+      {
+        "$sort":{
+          "count":-1
+        }
+      },
+      {
+        "$limit":2
+      }
+    ])
+
+$project aggr operation-a определя полетата които ще бъдат включени в документите 
+върнати в резултата от aggr pipeline-a, и също като $set може да създава или променя 
+стойности за нови и съществуващи полета
 
     {
         $project: {
@@ -216,7 +284,7 @@ $set добавя или модифицира полета в документи
     {
         $set: {
             place: {
-            $concat:["$city",",","$state"]
+              $concat:["$city",",","$state"]
             },
             pop:10000,
             class: "bird"
