@@ -1,10 +1,7 @@
 package org.example;
 
 import com.mongodb.*;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.*;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import com.mongodb.client.result.InsertManyResult;
@@ -64,8 +61,12 @@ public class MongoDbApp {
         MongoClient mongoClient = MongoClientSingleton.getInstance();
 
         try {
-            MongoDatabase database = mongoClient.getDatabase("bank");
-            MongoCollection<Document> accounts = database.getCollection("accounts");
+            MongoDatabase database = mongoClient.getDatabase("sample_supplies");
+            MongoCollection<Document> accounts = database.getCollection("sales");
+
+            Bson query = Filters.eq("_id", new ObjectId("5bd761dcae323e45a93ccfe8"));
+            FindIterable<Document> documents = accounts.find(query);
+            documents.forEach(doc -> System.out.println(doc.toJson()));
 
             //insertOne
 //            Document someDocument = new Document("_id", new ObjectId())

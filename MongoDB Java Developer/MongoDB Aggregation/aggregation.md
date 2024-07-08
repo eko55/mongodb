@@ -1,17 +1,45 @@
 ### <span style="color:darkgoldenrod"> Какво са aggregation операциите в MongoDB?
 //aggregation is the process of analysing and summarising data
-//агрегиране е процес по анализиране и общаване на данни
+//агрегиране е процес по анализиране и общаване/извличане на метрики на данни
 
 //Този процес се осъществява чрез aggregation операции.
 
-Aggregation операциите ни позволяват да :
-- групираме документи по уникална стойност за дадено поле(чрез $group stage-a) и да 
+Агрегациите са предстаени чрез Aggregation операциите ни позволяват да :
+- групираме документи по уникална стойност за дадено поле или сет от полета(чрез $group stage-a) и да 
 извлечем обобщени данни за всяка от получените групи(чрез aggregation accumulator-и 
-като $sum, $avg, $min, $max )
+като $sum, $avg, $min, $max ).Резултатът е по един документ за всяка група.
+- филтрираме данни по зададено условие (чрез $match stage-a)
+- сортираме документи ($sort - сортира input документите и ги подава на следващия stage)
+- трансформираме/организиране документи, посочвайки subset от полетата, които искаме да бъдат върнати за
+всеки документ($project)
+
+Тези операции се реализират чрез т.нар. aggregation stage-ове , част от aggregation pipeline, 
+през които преминават документите.
+Aggregation операциите могат да се прилагат както по отделно така и да се комбинират в aggregation pipeline.
+
+### <span style="color:darkgoldenrod"> Как се изпълнява aggregation операция в MongoDB?
+Изпълняват се с помощта на db.collection.aggregate() метода,като синтаксисът е следния:
+
+    db.collection.aggregate([
+      {
+        $stage1: {
+          { expression1 },
+          { expression2 }...
+        },
+        $stage2: {
+          { expression1 }...
+        }
+      }
+    ])
+
+aggregate метода приема aggregation pipeline - масив от aggregation stage-ове,които се изпълняват последователно
+stage-овете са aggregation операции, които се изпълняват върху данните,без да ги променят в базата
+Output-ът от всеки stage е input за следващия.
 
 Задачи: 
 0. Намерете броя на имотите под наем
 
+```db.listingsAndReviews.aggregate([{$count: "numberOfDocs"}])```
 ```db.listingsAndReviews.aggregate([{$group: {_id: null ,count: {$sum: 1}}}])```
 ```db.listingsAndReviews.aggregate({$group: {_id: null,count: {$count: {}}}})```
 ```db.listingsAndReviews.countDocuments()```
@@ -19,6 +47,8 @@ Aggregation операциите ни позволяват да :
 1. Намерет броя на импотите под наем за всеки тип имот.
 
 ```db.listingsAndReviews.aggregate([{$group: {_id: "$property_type",count: {$count: {}}}},{$sort: {count:-1}},{$limit: 2}])```
+
+$property_type е референция към стойността на property_type полето
 
 2. Намерете размера на легловата база сред импотите под наем.
 
@@ -73,24 +103,7 @@ Aggregation операциите ни позволяват да :
     ]
 
 
-### <span style="color:darkgoldenrod"> Как се изпълнява aggregation операция в MongoDB?
-Изпълняват се с помощта на db.collection.aggregate() метода,като синтаксисът е следния:
 
-    db.collection.aggregate([
-      {
-        $stage1: {
-          { expression1 },
-          { expression2 }...
-        },
-        $stage2: {
-          { expression1 }...
-        }
-      }
-    ])
-
-aggregate метода приема aggregation pipeline - масив от aggregation stage-ове.
-Всеки stage репрезентира една aggregation операция.
-Output-ът от всеки stage е input за следващия.
 
 Primer:
 
@@ -262,7 +275,7 @@ $sort и $limit аггр. stage-овете могат да бъдат изпол
         }
       },
       {
-        "$limit":2
+        "$limit":3
       }
     ])
 
@@ -302,3 +315,14 @@ pipeline-a. Ако подадените като параметри база и 
 като параметър, използва се базата от aggregate метода.
 
 ![title](resources/outAggregationOperator.png)
+
+Кой stage да извикаме първо, project или sort?
+General Considerations
+Efficiency:
+
+Removing Unneeded Fields Early: If you have large documents and you only need a subset of fields for sorting and subsequent operations, it can be more efficient to use $project early to reduce the size of each document.
+Index Use: Sorting can use indexes to improve performance. If the sort operation can leverage an index, you might want to apply $sort earlier. However, if you're reshaping documents with $project, you might not be able to use the index effectively after projection.
+Logical Flow:
+
+Dependent Fields: If the fields used in $sort depend on computations or transformations done in $project, then $project must come first.
+Final Output Shape: If $project is meant to shape the final output and $sort is for ordering the results, you might prefer to sort first and then project.
