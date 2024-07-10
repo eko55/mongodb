@@ -22,9 +22,11 @@ public class MongoDBConnectorPojoExample {
         // Replace the uri string with your MongoDB deployment's connection string
         String user = System.getenv("MONGODB_USER");
         String password = System.getenv("MONGODB_PASS");
-        String uri =String.format("mongodb+srv://%s:%s@myatlasclusteredu.fyvbwbb.mongodb.net/?retryWrites=true&w=majority&appName=myAtlasClusterEDU",user, password);
+        String uri =String.format("mongodb+srv://%s:%sa@myatlasclusteredu.fyvbwbb.mongodb.net/?retryWrites=true&w=majority&appName=myAtlasClusterEDU",user, password);
 
         try (MongoClient mongoClient = MongoClients.create(uri)) {
+            //getDatabase и getCollection конфигурират mongoClient-a, не извикват базата
+            //опита за конекция и аутентикацията се случват при опит за операция върху база или колекция
             MongoDatabase database = mongoClient.getDatabase("sample_mflix").withCodecRegistry(pojoCodecRegistry);
             MongoCollection<Movie> collection = database.getCollection("movies", Movie.class);
             Movie movie = collection.find(Filters.eq("title", "Back to the Future")).first();
