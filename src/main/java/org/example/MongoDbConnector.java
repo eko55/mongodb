@@ -4,20 +4,12 @@ import com.mongodb.*;
 import com.mongodb.client.*;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
-import com.mongodb.client.result.InsertManyResult;
-import com.mongodb.client.result.InsertOneResult;
 import com.mongodb.client.result.UpdateResult;
-import org.bson.BsonValue;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
-import java.util.List;
-
-public class MongoDbApp {
+public class MongoDbConnector {
 
 //    public static void main(final String[] args) {
 //        Logger root = (Logger) LoggerFactory.getLogger("org.mongodb.driver");
