@@ -1,10 +1,14 @@
 = L1. Backup Plans =
 Key words: backup plan, key elements of a backup plan, recovery point objectives(RPOs), recovery time objectives (RTOs)
+
 Backup plan includes:
 1.How to back up data
 - "mongodump" is a type of backup,suitable for small IoT devices, but not for larges systems
+
 2.How often to back up data
+
 3.How long to retain backup data
+
 4.Where to store backup data
 
 <span style="color:darkgoldenrod">Recovery Point Objective</span>: maximum acceptable amount of data loss a business is willing to tolerate in an event of disruption,expressed as an amount of time
@@ -17,7 +21,7 @@ RTO is determined by criticality of the system, recovery process, availability o
 Example:
 A business has an RTO of 3 hours. All systems must be running by 3 hours after an outage
 
-= L2. Filesystem Snapshots on a MongoDB server =
+<span style="color:darkgoldenrod">L2. Filesystem Snapshots on a MongoDB server</span>:
 Common way to create backup in Linux is to create filesystem snapshots.
 Snapshot is a complete copy of your data at a specific point in time
 It is suitable for both small and large systems.
